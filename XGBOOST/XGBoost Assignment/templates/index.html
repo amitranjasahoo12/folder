@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Predict Whether a Person's Income is above 50k or below 50k</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+<div>
+    <h1 style="text-align: center">Predict Person's Income is above 50k or below 50k  </h1>
+
+    <div class="form">
+        <form action="/predict" method="POST">
+            <div class="row">
+                <div class="col">
+
+                    <label for="inputAddress"><b>education:</b> <i>(person education is:)</i></label>
+                    <select name="education" id="education" class="form-control">
+                        <option value="11">HS-grad</option>
+                        <option value="15">Some-college</option>
+                        <option value="9">Bachelors</option>
+                        <option value="12">Masters</option>
+                        <option value="8">Assoc-voc</option>
+                        <option value="1">11th</option>
+                        <option value="7">Assoc-acdm</option>
+                        <option value="0">10th</option>
+                        <option value="5">7th-8th</option>
+                        <option value="14">Prof-school</option>
+                        <option value="6">9th</option>
+                        <option value="2">12th</option>
+                        <option value="10">Doctorate</option>
+                        <option value="4">5th-6th</option>
+                        <option value="3">1st-4th</option>
+                        <option value="13">Preschool</option>
+
+
+                    </select>
+                </div>
+
+                <div class="col">
+                    <label for="inputAddress"><b>age</b> <i>(Person age is:)</i></label>
+                    <input type="number" name="age" id="age" class="form-control" max="100" min="0"
+                           placeholder="Enter values">
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="inputAddress"><b>marital_status</b> <i>(Person marital_status: )</i></label>
+                    <select name="marital_status" id="marital_status" class="form-control">
+                        <option value="2">Married-civ-spouse</option>
+                        <option value="4">Never-married</option>
+                        <option value="0">Divorced</option>
+                        <option value="5">Separated</option>
+                        <option value="6">Widowed</option>
+                        <option value="3">Married-spouse-absent</option>
+                        <option value="1">Married-AF-spouse</option>
+
+                    </select>
+                </div>
+
+                <div class="col">
+                    <label for="inputAddress"><b>education_num</b> <i>(education_num)</i></label>
+                    <input type="number" name="education_num" id="education_num" class="form-control" max="100" min="0"
+                           placeholder="Enter values">
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="inputAddress"><b>occupation</b> <i>(person occupation is :)</i></label>
+                    <select name="marital_status" id="marital_status" class="form-control">
+                        <option value="10">Prof-specialty</option>
+                        <option value="3">Craft-repair</option>
+                        <option value="4">Exec-managerial</option>
+                        <option value="1">Adm-clerical</option>
+                        <option value="12">Sales</option>
+                        <option value="8">Other-service</option>
+                        <option value="7">Machine-op-inspct</option>
+                        <option value="0">unknown</option>
+                        <option value="6">Transport-moving</option>
+                        <option value="14">Handlers-cleaners</option>
+                        <option value="5">Farming-fishing</option>
+                        <option value="13">Tech-support</option>
+                        <option value="11">Protective-serv</option>
+                        <option value="9">Priv-house-serv</option>
+                        <option value="2">Armed-Forces</option>
+
+                    </select>
+                </div>
+
+                <div class="col">
+                    <div class="col">
+                    <label for="inputAddress"><b>relationship</b> <i>(Person relationship status is:)</i></label>
+                    <select name="relationship" id="relationship" class="form-control">
+                        <option value="0">Husband</option>
+                        <option value="1">Not-in-family</option>
+                        <option value="3">Own-child</option>
+                        <option value="4">Unmarried</option>
+                        <option value="5">Wife</option>
+                        <option value="2">Other-relative</option>
+
+
+                    </select>
+                </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <label for="inputAddress"><b>sex</b> <i>(person sex is :)</i></label>
+                    <select name="sex" id="sex" class="form-control">
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+
+
+                    </select>
+                </div>
+
+                <div class="col">
+                    <div class="col">
+                    <label for="inputAddress"><b>capital_gain</b> <i>(Person capital_gain is:)</i></label>
+                    <input type="number" name="capital_gain" id="capital_gain" class="form-control" max="1000" min="0"
+                           placeholder="Enter values">
+                </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="inputAddress"><b>capital_loss</b> <i>(person capital_loss is :)</i></label>
+                    <input type="number" name="capital_loss" id="capital_loss" class="form-control" max="1000" min="0"
+                           placeholder="Enter values">
+                </div>
+
+                <div class="col">
+                    <div class="col">
+                    <label for="inputAddress"><b>hours_per_week</b> <i>(Person hours_per_week:)</i></label>
+                    <input type="number" name="hours_per_week" id="hours_per_week" class="form-control" max="150" min="0"
+                           placeholder="Enter values">
+                </div>
+                </div>
+            </div>
+
+            <br/>
+            <div class="row">
+                <button type="submit" class="btn btn-primary">INCOME</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% if hasValues%}
+
+<hr/>
+
+<div>
+    <div class="alert alert-success" role="alert"><p> Predict Person's Income (above >50K{1} or below <=50K{0})   <b>{{prediction}}</b></p></div>
+
+
+</div>
+{% endif %}
+{% endblock %}
+

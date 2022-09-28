@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Predict Whether a Person's Income is above 50k or below 50k</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+
+{% if prediction %}
+
+<hr/>
+
+<div>
+    <div class="alert alert-success" role="alert"><p> Whether a Person's Income is above 50k or below 50k   <b>{{prediction}}</b></p></div>
+
+
+</div>
+{% endif %}
+{% endblock %}
